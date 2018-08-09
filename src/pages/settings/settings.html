@@ -1,12 +1,13 @@
 <ion-header>
-        <ion-navbar>
-          <ion-title>
-            Settings
-          </ion-title>
-        </ion-navbar>
-      </ion-header>
-      
-      <ion-content padding>
-      
-      </ion-content>
-      
+    <ion-navbar>
+        <ion-title>
+        Settings
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+    
+<ion-content padding>
+    <button ion-button (click)="auth()" *ngIf="!loggedIn">Authorize</button>
+    <button ion-button (click)="auth()" *ngIf="loggedIn">Log out</button>
+    <span *ngIf="loggedIn">Logged in</span>
+</ion-content>
