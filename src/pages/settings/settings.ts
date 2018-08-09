@@ -9,6 +9,7 @@ import { AuthService } from '../../services/auth/auth';
 })
 export class SettingsPage {
     loggedIn: boolean;
+    spotifyId: string;
 
     constructor (public navCtrl: NavController, private authService: AuthService) {
         this.loggedIn = false;
@@ -18,6 +19,7 @@ export class SettingsPage {
         this.authService.auth()
             .then(() => {
                 this.loggedIn = true;
+                this.spotifyId = this.authService.spotifyId;
             })
     }
 }

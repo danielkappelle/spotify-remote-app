@@ -1,16 +1,29 @@
 import { Injectable } from '@angular/core';
 
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { HTTP } from '@ionic-native/http';
 
 @Injectable()
 export class AuthService {
-    constructor (private iab: InAppBrowser) {}
+    constructor (private iab: InAppBrowser, private http: HTTP) {}
 
     accessToken: string;
     spotifyId: string;
 
-    getSpotifyId(): void {
-        
+    getSpotifyId(): Promise<void> {
+        return new Promise((resolve, reject) => {
+            this.http.get('https://api.spotify.com/v1/me', {}, {'Authorization': `Bearer ${this.accessToken}`})
+            .then(data => {
+                let json = JSON.parse(data.data);
+                this.spotifyId = json.display_name;
+                console.log(data);
+                resolve();
+            })
+            .catch(err => {
+                console.log(err);
+                reject();
+            })
+        })
     }
 
     auth(): Promise<void> {
@@ -43,10 +56,12 @@ export class AuthService {
             browser.on('loadstart').subscribe(event => {
                 console.log(event);
                 if(event.url.indexOf(redirect_uri) === 0) {
-                    browser.close()
+                    browser.close();
                     
                     this.accessToken = event.url.match(/[#&]access_token=([^&]*)/)[1];
-                    resolve()
+                    this.getSpotifyId()
+                        .then(resolve)
+                        .catch(reject);
                 }
             })
         })

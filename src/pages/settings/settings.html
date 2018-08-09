@@ -9,5 +9,5 @@
 <ion-content padding>
     <button ion-button (click)="auth()" *ngIf="!loggedIn">Authorize</button>
     <button ion-button (click)="auth()" *ngIf="loggedIn">Log out</button>
-    <span *ngIf="loggedIn">Logged in</span>
+    <span *ngIf="loggedIn">Logged in as {{spotifyId}}</span>
 </ion-content>
