@@ -9,6 +9,7 @@ import { SettingsPage } from '../pages/settings/settings';
 import { PlayerPage } from '../pages/player/player';
 
 import { AuthService } from '../services/auth/auth';
+import { ControlsService } from '../services/controls/controls';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -41,8 +42,9 @@ import { HTTP } from '@ionic-native/http';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     InAppBrowser,
+    HTTP,
     AuthService,
-    HTTP
+    ControlsService
   ]
 })
 export class AppModule {}
