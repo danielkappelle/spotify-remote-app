@@ -42,9 +42,9 @@ import { HTTP } from '@ionic-native/http';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     InAppBrowser,
-    HTTP,
     AuthService,
-    ControlsService
+    ControlsService,
+    HTTP
   ]
 })
 export class AppModule {}

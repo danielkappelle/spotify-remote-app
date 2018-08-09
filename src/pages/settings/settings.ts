@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
 import { AuthService } from '../../services/auth/auth';
+import { User } from '../../models/user';
 
 @Component({
     selector: 'page-settings',
@@ -9,7 +10,7 @@ import { AuthService } from '../../services/auth/auth';
 })
 export class SettingsPage {
     loggedIn: boolean;
-    spotifyId: string;
+    user: User;
 
     constructor (public navCtrl: NavController, private authService: AuthService) {
         this.loggedIn = false;
@@ -19,7 +20,8 @@ export class SettingsPage {
         this.authService.auth()
             .then(() => {
                 this.loggedIn = true;
-                this.spotifyId = this.authService.spotifyId;
+                this.user = this.authService.user;
+                console.log(this.user);
             })
     }
 }
