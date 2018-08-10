@@ -59,7 +59,7 @@ export class AuthService {
     return new Promise((resolve, reject) => {
       browser.on('loadstart').subscribe(event => {
         console.log(event)
-        if (event.url.indexOf(redirect_uri) === 0) {
+        if (event.url.indexOf(redirectUri) === 0) {
           browser.close()
 
           this.accessToken = event.url.match(/[#&]access_token=([^&]*)/)[1]
