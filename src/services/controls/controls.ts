@@ -73,6 +73,16 @@ export class ControlsService {
         this.performRequest('/me/player/previous', 'POST', {});
     }
 
+    public search(q): Promise<any> {
+        return new Promise((resolve, reject) => {
+            this.performRequest('/search', 'GET', {q: q, type: 'album,artist,playlist,track', limit: '10'})
+            .then(res => {
+                resolve(res);
+            })
+            .catch(reject);
+        })
+    }
+
     public updatePlaying(): Promise<void> {
         return new Promise((resolve, reject) => {
             this.performRequest('/me/player/currently-playing', 'GET', {})
