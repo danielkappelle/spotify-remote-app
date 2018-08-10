@@ -31,4 +31,8 @@ export class SearchPage {
   parseArtist (artists: Array<any>): void {
     return _.map(artists, x => x.name).join(', ')
   }
+
+  playSong (song: any): void {
+    this.controls.playSong(song.uri)
+  }
 }

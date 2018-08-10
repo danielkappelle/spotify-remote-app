@@ -22,7 +22,7 @@
        
           <div [ngSwitch]="type" *ngIf="searchReady">
           <ion-list *ngSwitchCase="'songs'">
-              <ion-item *ngFor="let song of searchResults.tracks.items">
+              <ion-item *ngFor="let song of searchResults.tracks.items" (click)="playSong(song)">
                   <ion-thumbnail item-start>
                     <img src="{{song.album.images[0].url}}">
                   </ion-thumbnail>

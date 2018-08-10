@@ -12,12 +12,16 @@ import _ from 'lodash'
 export class ControlsService {
   constructor (private auth: AuthService, private http: HTTP) {
     this.currentSong = new CurrentSong()
+    this.http.setDataSerializer('json')
   }
 
   currentSong: CurrentSong
 
   private getHeaders (): object {
-    return { 'Authorization': `Bearer ${this.auth.accessToken}` }
+    return {
+      'Authorization': `Bearer ${this.auth.accessToken}`,
+      'Content-Type': 'application/json'
+    }
   }
 
   private performRequest (endpoint, method, parameters): Promise<any> {
@@ -73,7 +77,7 @@ export class ControlsService {
     this.performRequest('/me/player/previous', 'POST', {})
   }
 
-  public search (q): Promise<any> {
+  public search (q: string): Promise<any> {
     return new Promise((resolve, reject) => {
       this.performRequest('/search', 'GET', { q: q, type: 'album,artist,playlist,track', limit: '10' })
         .then(res => {
@@ -81,6 +85,13 @@ export class ControlsService {
         })
         .catch(reject)
     })
+  }
+
+  public playSong (uri: string): void {
+    this.performRequest('/me/player/play', 'PUT', { uris: [uri] })
+      .catch(err => {
+        console.log(err)
+      })
   }
 
   public updatePlaying (): Promise<void> {
