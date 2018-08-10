@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { HTTP } from '@ionic-native/http';
 import { User } from '../../models/user';
+import { ToastController } from 'ionic-angular';
 
 @Injectable()
 export class AuthService {
   accessToken: string;
   user: User;
   
-  constructor (private iab: InAppBrowser, private http: HTTP) {
+  constructor (private iab: InAppBrowser, private http: HTTP, public toast: ToastController) {
     this.user = new User;
   }
 
@@ -63,7 +64,15 @@ export class AuthService {
                   
                   this.accessToken = event.url.match(/[#&]access_token=([^&]*)/)[1];
                   this.getSpotifyId()
-                      .then(resolve)
+                      .then(() => {
+                        const toast = this.toast.create({
+                          message: 'Logged in successfully',
+                          duration: 3000,
+                          position: 'top'
+                        });
+                        toast.present();
+                        resolve();
+                      })
                       .catch(reject);
               }
           })

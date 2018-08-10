@@ -7,7 +7,35 @@
       </ion-header>
       
       <ion-content padding>
-        <button ion-button (click)="play()">Play</button> <button ion-button (click)="pause()">Pause</button>
-      
+
+      <ion-card>
+          <img src="{{currentSong.artwork}}"/>
+          <ion-card-content>
+            <ion-card-title>
+              {{currentSong.artists}}
+              </ion-card-title>
+            <p>
+              {{currentSong.song}}
+            </p>
+          </ion-card-content>
+
+          <ion-row>
+              <ion-col center text-center>
+                  <button ion-button icon-only large round outline (click)="prev()">
+                      <ion-icon name="skip-backward"></ion-icon>
+                    </button>
+              </ion-col>
+              <ion-col center text-center>
+                  <button ion-button icon-only large round outline (click)="playpause()">
+                    <ion-icon name="{{currentSong.playing ? 'pause' : 'play'}}"></ion-icon>
+                  </button>
+              </ion-col>
+              <ion-col center text-center>
+                  <button ion-button icon-only large round outline (click)="next()">
+                      <ion-icon name="skip-forward"></ion-icon>
+                    </button>
+              </ion-col>
+            </ion-row>
+      </ion-card>
       </ion-content>
       
