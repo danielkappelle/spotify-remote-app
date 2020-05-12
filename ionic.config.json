@@ -1,7 +1,0 @@
-{
-  "name": "spotify-remote-app",
-  "integrations": {
-    "cordova": {}
-  },
-  "type": "ionic-angular"
-}
