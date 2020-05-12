@@ -94,6 +94,16 @@ export class ControlsService {
       })
   }
 
+  public getAlbum (id: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.performRequest(`/albums/${id}`, 'GET', {})
+        .then(res => {
+          resolve(res)
+        })
+        .catch(reject)
+    })
+  }
+
   public updatePlaying (): Promise<void> {
     return new Promise((resolve, reject) => {
       this.performRequest('/me/player/currently-playing', 'GET', {})

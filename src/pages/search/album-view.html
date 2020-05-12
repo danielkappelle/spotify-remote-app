@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-navbar>
+      <ion-title>
+        {{album.name}}
+      </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+<ion-card>
+  <img src="{{album.images[0].url}}"/>
+  <ion-card-content *ngIf="loadReady">
+    <ion-card-title>
+      {{album.name}}
+    </ion-card-title>
+    <ion-list>
+      <button ion-item *ngFor="let track of album.tracks.items" (click)="playSong(track)">
+        {{ track.track_number }} {{ track.name }}
+      </button>  
+    </ion-list>
+  </ion-card-content>
+</ion-card>
+
+<ion-content padding>

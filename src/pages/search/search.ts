@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular'
 import { ControlsService } from '../../services/controls/controls'
 
 import _ from 'lodash'
+import { AlbumViewPage } from './album-view'
 
 @Component({
   selector: 'page-search',
@@ -34,5 +35,9 @@ export class SearchPage {
 
   playSong (song: any): void {
     this.controls.playSong(song.uri)
+  }
+
+  openAlbum (album: any): void {
+    this.navCtrl.push(AlbumViewPage, { album: album })
   }
 }

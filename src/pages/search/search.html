@@ -22,22 +22,22 @@
        
           <div [ngSwitch]="type" *ngIf="searchReady">
           <ion-list *ngSwitchCase="'songs'">
-              <ion-item *ngFor="let song of searchResults.tracks.items" (click)="playSong(song)">
+              <button ion-item *ngFor="let song of searchResults.tracks.items" (click)="playSong(song)">
                   <ion-thumbnail item-start>
                     <img src="{{song.album.images[0].url}}">
                   </ion-thumbnail>
                   <h2>{{song.name}}</h2>
                   <p>{{parseArtist(song.artists)}}</p>
-              </ion-item>
+              </button>
           </ion-list>
           <ion-list *ngSwitchCase="'albums'">
-            <ion-item *ngFor="let album of searchResults.albums.items">
-                      <ion-thumbnail item-start>
-                        <img src="{{album.images[0].url}}">
-                      </ion-thumbnail>
-                      <h2>{{album.name}}</h2>
-                      <p>{{parseArtist(album.artists)}}</p>
-            </ion-item>
+            <button ion-item *ngFor="let album of searchResults.albums.items" (click)="openAlbum(album)">
+              <ion-thumbnail item-start>
+                <img src="{{album.images[0].url}}">
+              </ion-thumbnail>
+              <h2>{{album.name}}</h2>
+              <p>{{parseArtist(album.artists)}}</p>
+             </button>
           </ion-list>
           </div>
       </ion-content>

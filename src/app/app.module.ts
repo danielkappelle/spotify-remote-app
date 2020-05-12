@@ -7,6 +7,7 @@ import { TabsPage } from '../pages/tabs/tabs'
 import { SearchPage } from '../pages/search/search'
 import { SettingsPage } from '../pages/settings/settings'
 import { PlayerPage } from '../pages/player/player'
+import { AlbumViewPage } from '../pages/search/album-view'
 
 import { AuthService } from '../services/auth/auth'
 import { ControlsService } from '../services/controls/controls'
@@ -23,7 +24,8 @@ import { HTTP } from '@ionic-native/http'
     TabsPage,
     SearchPage,
     SettingsPage,
-    PlayerPage
+    PlayerPage,
+    AlbumViewPage
   ],
   imports: [
     BrowserModule,
@@ -35,7 +37,8 @@ import { HTTP } from '@ionic-native/http'
     TabsPage,
     SearchPage,
     SettingsPage,
-    PlayerPage
+    PlayerPage,
+    AlbumViewPage
   ],
   providers: [
     StatusBar,
